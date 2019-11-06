@@ -215,33 +215,33 @@ class Snake(object):
         elif self.head.direction_y == -1:
             self.wall_distance_y = self.head.position_y
 
-    def find_distance_from_body(self):
-
-        self.BD_U = 1000
-        self.BD_D = 1000
-        self.BD_R = 1000
-        self.BD_L = 1000
-
-        for i, cube in enumerate(self.body):
-            if self.head.position_y == cube.position_y and i != 0:
-                distance_x = self.head.position_x - cube.position_x
-                if distance_x > 0:
-                    if self.BD_L == 1000:
-                        self.BD_L = distance_x
-                else:
-                    if self.BD_R == 1000:
-                        self.BD_R = abs(distance_x)
-
-            if self.head.position_x == cube.position_x and i != 0:
-                distance_y = self.head.position_y - cube.position_y
-                if distance_y > 0:
-                    if self.BD_U == 1000:
-                        self.BD_U = distance_y
-                else:
-                    if self.BD_D == 1000:
-                        self.BD_D = abs(distance_y)
-                if self.BD_U != 1000 and self.BD_D != 1000 and self.BD_L != 1000 and self.BD_R != 1000:
-                    break
+    #def find_distance_from_body(self):
+#
+    #    self.BD_U = 1000
+    #    self.BD_D = 1000
+    #    self.BD_R = 1000
+    #    self.BD_L = 1000
+#
+    #    for i, cube in enumerate(self.body):
+    #        if self.head.position_y == cube.position_y and i != 0:
+    #            distance_x = self.head.position_x - cube.position_x
+    #            if distance_x > 0:
+    #                if self.BD_L == 1000:
+    #                    self.BD_L = distance_x
+    #            else:
+    #                if self.BD_R == 1000:
+    #                    self.BD_R = abs(distance_x)
+#
+    #        if self.head.position_x == cube.position_x and i != 0:
+    #            distance_y = self.head.position_y - cube.position_y
+    #            if distance_y > 0:
+    #                if self.BD_U == 1000:
+    #                    self.BD_U = distance_y
+    #            else:
+    #                if self.BD_D == 1000:
+    #                    self.BD_D = abs(distance_y)
+    #            if self.BD_U != 1000 and self.BD_D != 1000 and self.BD_L != 1000 and self.BD_R != 1000:
+    #                break
 
     def snack_surroundings(self, snack):
         for i in range(4):
@@ -367,7 +367,7 @@ def main(genomes, config):
                 if snake.stack_collection(snacks[i]):
                     ge[i].fitness += 15
                 ge[i].fitness += snake.snack_surroundings(snacks[i])
-                ge[i].fitness -= snake.moving_towards_body()
+                #ge[i].fitness -= snake.moving_towards_body()
                 snacks[i].generator(snake)
                 snake.find_snack_and_wall_distance(snacks[i])
                 snake.find_distance_from_body()
@@ -412,8 +412,8 @@ def main(genomes, config):
                         ge[i].fitness -= 15
                     if snake.dead_from_body_hit:
                         ge[i].fitness -= 10
-                        if ge[i].fitness > 300:
-                            ge[i].fitness //= 2
+                        #if ge[i].fitness > 300:
+                        #    ge[i].fitness //= 2
                     if snake.dead_from_no_moves:
                         ge[i].fitness -= 5
                     snake.directions_for_turns.clear()

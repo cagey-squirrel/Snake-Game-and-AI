@@ -261,17 +261,17 @@ class Snake(object):
                     return -0.1
             else:
                 return -0.1
-    def moving_towards_body(self):
-        if self.head.direction_x == 1 and self.BD_R != 1000:
-            return 10
-        elif self.head.direction_x == -1 and self.BD_L != 1000:
-            return 10
-        elif self.head.direction_y == 1 and self.BD_D != 1000:
-            return 10
-        elif self.head.direction_y == -1 and self.BD_U != 1000:
-            return 10
-        else:
-            return 0
+    #def moving_towards_body(self):
+    #    if self.head.direction_x == 1 and self.BD_R != 1000:
+    #        return 10
+    #    elif self.head.direction_x == -1 and self.BD_L != 1000:
+    #        return 10
+    #    elif self.head.direction_y == 1 and self.BD_D != 1000:
+    #        return 10
+    #    elif self.head.direction_y == -1 and self.BD_U != 1000:
+    #        return 10
+    #    else:
+    #        return 0
 
 
 class Snack(object):
@@ -378,7 +378,7 @@ def main(genomes, config):
                 output = nets[i].activate((snake.head.position_x, snake.head.position_y, snake.head.direction_x,
                                            snake.head.direction_y, snake.wall_distance_x, snake.wall_distance_y,
                                            snake.snack_is_right, snake.snack_is_left, snake.snack_is_up,
-                                           snake.snack_is_down, snake.BD_L, snake.BD_R, snake.BD_U, snake.BD_D))
+                                           snake.snack_is_down))
 
                 if output[0] >= 0.5:
                     snake.move_right()

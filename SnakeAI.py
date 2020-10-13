@@ -370,7 +370,7 @@ def main(genomes, config):
                 #ge[i].fitness -= snake.moving_towards_body()
                 snacks[i].generator(snake)
                 snake.find_snack_and_wall_distance(snacks[i])
-                snake.find_distance_from_body()
+                #snake.find_distance_from_body()
                 snake.bite_or_hit()
 
                 # ge[i].fitness += 1
